@@ -7,9 +7,14 @@ const port = process.env.PORT;
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
+
+//asi creo la ruta para luego utilizar los parciales en cada screen
+
 hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 
 app.use(express.static('public'));
+
+// pongo rutas parciales por que al poner render va directamente al views, handelbars está creado así
 
 app.get('/', function (req, res) {
   res.render('home', {
@@ -18,6 +23,8 @@ app.get('/', function (req, res) {
     name: 'Lorenzo 😄',
   });
 });
+
+//asi creo argumentos para pasar
 app.get('/elements', function (req, res) {
   res.render('elements', {
     title: 'serverSide',
